@@ -179,8 +179,20 @@ export default function ProductList() {
   const [filter, setFilter] = useState({});
 
   useEffect(() => {
-    dispatch(fetchAllProductsAsync());
-  }, [dispatch]);
+    // dispatch(fetchAllProductsAsync());
+    dispatch(fetchProductsByFiltersAsync(filter));
+  }, [dispatch,filter]);
+  
+  const handleFilter = (e, section, option) => {
+    const newFilter = {...filter};
+    if(e.target.checked){
+      newFilter[section.id] = option.value;
+    }else{
+      delete newFilter[section.id];
+    }
+    setFilter(newFilter);
+    console.log(section.id, option.value);
+  };
 
   const handleSort = (e, option) => {
     const newFilter = { ...filter, _sort: option.sort, _order: option.order };
@@ -194,7 +206,7 @@ export default function ProductList() {
         <div className="bg-white">
           <div>
             {/* Mobile filter dialog */}
-            <MobileFilter></MobileFilter>
+            <MobileFilter handleFilter={handleFilter} mobileFiltersOpen={mobileFiltersOpen} setMobileFiltersOpen={setMobileFiltersOpen}></MobileFilter>
 
             <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
@@ -276,7 +288,7 @@ export default function ProductList() {
 
                 <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
                   {/* Filters */}
-                  <DesktopFilter dispatch={dispatch}></DesktopFilter>
+                  <DesktopFilter dispatch={dispatch} handleFilter={handleFilter}></DesktopFilter>
 
                   {/* Product grid */}
                   <div className="lg:col-span-3">
@@ -298,8 +310,7 @@ export default function ProductList() {
   );
 }
 
-function MobileFilter() {
-  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+function MobileFilter({handleFilter, mobileFiltersOpen,setMobileFiltersOpen}) {
   return (
     <>
       <Transition.Root show={mobileFiltersOpen} as={Fragment}>
@@ -415,14 +426,7 @@ function MobileFilter() {
   );
 }
 
-function DesktopFilter({ dispatch }) {
-  const [filter, setFilter] = useState({});
-  const handleFilter = (e, section, option) => {
-    const newFilter = { ...filter, [section.id]: option.value };
-    setFilter(newFilter);
-    dispatch(fetchProductsByFiltersAsync(newFilter));
-    console.log(section.id, option.value);
-  };
+function DesktopFilter({ dispatch, handleFilter }) {
   return (
     <>
       <form className="hidden lg:block">
