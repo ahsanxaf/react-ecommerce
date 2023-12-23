@@ -18,6 +18,7 @@ import {
 } from "../productSlice";
 import { Link } from "react-router-dom";
 import { UseSelector } from "react-redux";
+import { ITEMS_PER_PAGE } from "../../../app/constants";
 
 const sortOptions = [
   { name: "Best Rating", sort: "rating", order: "desc", current: false },
@@ -178,11 +179,13 @@ export default function ProductList() {
   const products = useSelector(selectAllProducts);
   const [filter, setFilter] = useState({});
   const [sort, setSort] = useState({});
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
+    const pagination = {_page:page, _limit:ITEMS_PER_PAGE}
     // dispatch(fetchAllProductsAsync());
-    dispatch(fetchProductsByFiltersAsync({filter, sort}));
-  }, [dispatch,filter, sort]);
+    dispatch(fetchProductsByFiltersAsync({filter, sort, pagination}));
+  }, [dispatch,filter, sort, page]);
   
   const handleFilter = (e, section, option) => {
     const newFilter = {...filter};
@@ -204,6 +207,10 @@ export default function ProductList() {
     const sort = { _sort: option.sort, _order: option.order };
     console.log({sort})
     setSort(sort);
+  };
+  const handlePage = (page) => {
+    console.log(page)
+    setPage(page);
   };
 
   return (
@@ -306,7 +313,7 @@ export default function ProductList() {
 
               {/* Section of products and filter end here */}
               
-              <Pagination></Pagination>
+              <Pagination page={page} setPage={setPage} handlePage={handlePage}></Pagination>
               
             </main>
           </div>
@@ -490,7 +497,7 @@ function DesktopFilter({ dispatch, handleFilter }) {
   );
 }
 
-function Pagination() {
+function Pagination({page, setPage, handlePage, totalItems=55}) {
   return (
     <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
       <div className="flex flex-1 justify-between sm:hidden">
@@ -510,9 +517,9 @@ function Pagination() {
       <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
         <div>
           <p className="text-sm text-gray-700">
-            Showing <span className="font-medium">1</span> to{" "}
-            <span className="font-medium">10</span> of{" "}
-            <span className="font-medium">97</span> results
+            Showing <span className="font-medium">{(page-1)*ITEMS_PER_PAGE+1}</span> to{" "}
+            <span className="font-medium">{page*ITEMS_PER_PAGE}</span> of{" "}
+            <span className="font-medium">{totalItems}</span> results
           </p>
         </div>
         <div>
@@ -528,34 +535,17 @@ function Pagination() {
               <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
             </a>
             {/* Current: "z-10 bg-indigo-600 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" */}
-            <a
-              href="#"
-              aria-current="page"
-              className="relative z-10 inline-flex items-center bg-indigo-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              1
-            </a>
-            <a
-              href="#"
-              className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
-            >
-              2
-            </a>
-            <a
-              href="#"
-              className="relative hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex"
-            >
-              3
-            </a>
-            <span className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-offset-0">
-              ...
-            </span>
-            <a
-              href="#"
-              className="relative hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex"
-            >
-              8
-            </a>
+            {Array.from({length:Math.ceil(totalItems/ITEMS_PER_PAGE)})
+              .map((el,index) => (
+                <div
+                  onClick={e=>handlePage(index+1)}
+                  aria-current="page"
+                  className={`relative cursor-pointer z-10 inline-flex items-center ${index+1===page ? 'bg-indigo-600 text-white' : 'text-black'}  px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
+                >
+                  {index+1}
+                </div>
+              ))
+            }
 
             <a
               href="#"
