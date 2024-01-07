@@ -726,100 +726,87 @@
     {
       "email": "test@gmail.com",
       "password": "Ahsan@123",
+      "addresses": [
+        {
+          "name": "Muhammad Ahsan Farooq",
+          "email": "farooqahsan72@gmail.com",
+          "phone": "03115529582",
+          "street": "Islamabad",
+          "city": "Islamabad",
+          "state": "Islamabad",
+          "postalcode": "46000"
+        },
+        {
+          "name": "Muhammad Ali",
+          "email": "farooqahsan72@gmail.com",
+          "phone": "03319333704",
+          "street": "House 18 Street 3 G11/4",
+          "city": "Islamabad",
+          "state": "Punjab",
+          "postalcode": "46000"
+        },
+        {
+          "name": "John",
+          "email": "john@gmail.com",
+          "phone": "+92434343534",
+          "street": "Karachi, street 5",
+          "city": "Karachi",
+          "state": "Sindh",
+          "postalcode": "43532"
+        }
+      ],
       "id": 1
     },
     {
       "email": "test@gmail.com",
-      "password": "Ahsan@123",
-      "id": 2
-    },
-    {
-      "email": "test@gmail.com",
-      "password": "Ahsan@123",
-      "id": 3
-    },
-    {
-      "email": "test@gmail.com",
-      "password": "Ahsan@123",
-      "id": 4
-    },
-    {
-      "email": "test@gmail.com",
-      "password": "Ahsan@123",
-      "id": 5
-    },
-    {
-      "email": "test@gmail.com",
-      "password": "Ahsan@123",
-      "id": 6
-    },
-    {
-      "email": "test@gmail.com",
-      "password": "Ahsan@123",
-      "id": 7
-    },
-    {
-      "email": "test@gmail.com",
-      "password": "Ahsan@123",
-      "id": 8
-    },
-    {
-      "email": "test@gmail.com",
-      "password": "Ahsan@123",
-      "id": 9
-    },
-    {
-      "email": "ahsanfarooqxx69@gmail.com",
-      "password": "A1234567!@a",
-      "id": 10
-    },
-    {
-      "email": "test@gmail.com",
       "password": "Test@123",
-      "id": 11
+      "addresses": [],
+      "id": 2
     }
   ],
   "cart": [
     {
-      "id": 16,
-      "title": "Hyaluronic Acid Serum",
-      "description": "L'OrÃ©al Paris introduces Hyaluron Expert Replumping Serum formulated with 1.5% Hyaluronic Acid",
-      "price": 19,
-      "discountPercentage": 13.31,
-      "rating": 4.83,
-      "stock": 110,
-      "brand": "L'Oreal Paris",
-      "category": "skincare",
-      "thumbnail": "https://i.dummyjson.com/data/products/16/thumbnail.jpg",
+      "title": "iPhone X",
+      "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+      "price": 899,
+      "discountPercentage": 17.94,
+      "rating": 4.44,
+      "stock": 34,
+      "brand": "Apple",
+      "category": "smartphones",
+      "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
       "images": [
-        "https://i.dummyjson.com/data/products/16/1.png",
-        "https://i.dummyjson.com/data/products/16/2.webp",
-        "https://i.dummyjson.com/data/products/16/3.jpg",
-        "https://i.dummyjson.com/data/products/16/4.jpg",
-        "https://i.dummyjson.com/data/products/16/thumbnail.jpg"
+        "https://i.dummyjson.com/data/products/2/1.jpg",
+        "https://i.dummyjson.com/data/products/2/2.jpg",
+        "https://i.dummyjson.com/data/products/2/3.jpg",
+        "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
       ],
       "quantity": 1,
-      "user": 11
+      "user": 1,
+      "id": 1
     },
     {
-      "id": 10,
-      "title": "HP Pavilion 15-DK1056WM",
-      "description": "HP Pavilion 15-DK1056WM Gaming Laptop 10th Gen Core i5, 8GB, 256GB SSD, GTX 1650 4GB, Windows 10",
-      "price": 1099,
-      "discountPercentage": 6.18,
-      "rating": 4.43,
-      "stock": 89,
-      "brand": "HP Pavilion",
-      "category": "laptops",
-      "thumbnail": "https://i.dummyjson.com/data/products/10/thumbnail.jpeg",
+      "title": "iPhone X",
+      "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+      "price": 899,
+      "discountPercentage": 17.94,
+      "rating": 4.44,
+      "stock": 34,
+      "brand": "Apple",
+      "category": "smartphones",
+      "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
       "images": [
-        "https://i.dummyjson.com/data/products/10/1.jpg",
-        "https://i.dummyjson.com/data/products/10/2.jpg",
-        "https://i.dummyjson.com/data/products/10/3.jpg",
-        "https://i.dummyjson.com/data/products/10/thumbnail.jpeg"
+        "https://i.dummyjson.com/data/products/2/1.jpg",
+        "https://i.dummyjson.com/data/products/2/2.jpg",
+        "https://i.dummyjson.com/data/products/2/3.jpg",
+        "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
       ],
-      "quantity": 1,
-      "user": 11
+      "quantity": 3,
+      "user": 1,
+      "id": 2
     }
+  ],
+  "orders": [
+    
   ]
 }
