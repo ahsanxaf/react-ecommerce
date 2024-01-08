@@ -8,6 +8,7 @@ import {
 } from "../features/cart/cartSlice";
 import { useForm } from "react-hook-form";
 import { selectLoggedInUser, updateUserAsync } from "../features/auth/authSlice";
+import { createOrderAsync } from "../features/order/orderSlice";
 
 const products = [
   {
@@ -92,7 +93,11 @@ function Checkout() {
   };
   
   const handleOrder = (e) => {
-    // setPaymentMethod(e.target.value);
+    const order = {items, totalAmmount, totalItems, user, paymentMethod, selectedAddress}
+    dispatch(createOrderAsync(order))
+    //TODO: redirect to order process page
+    //TODO: clear cart after order
+    //TODO: on server change the stock of the items
   };
 
   return (
@@ -430,7 +435,7 @@ function Checkout() {
               <div className="mt-6">
                 <div
                   onClick={handleOrder}
-                  className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                  className="flex items-center cursor-pointer justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                 >
                   Pay and Order
                 </div>

@@ -807,6 +807,361 @@
     }
   ],
   "orders": [
-    
+    {
+      "items": [
+        {
+          "title": "iPhone X",
+          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "price": 899,
+          "discountPercentage": 17.94,
+          "rating": 4.44,
+          "stock": 34,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/2/1.jpg",
+            "https://i.dummyjson.com/data/products/2/2.jpg",
+            "https://i.dummyjson.com/data/products/2/3.jpg",
+            "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "id": 1
+        },
+        {
+          "title": "iPhone X",
+          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "price": 899,
+          "discountPercentage": 17.94,
+          "rating": 4.44,
+          "stock": 34,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/2/1.jpg",
+            "https://i.dummyjson.com/data/products/2/2.jpg",
+            "https://i.dummyjson.com/data/products/2/3.jpg",
+            "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+          ],
+          "quantity": 3,
+          "user": 1,
+          "id": 2
+        }
+      ],
+      "totalAmmount": 3596,
+      "totalItems": 4,
+      "user": {
+        "email": "test@gmail.com",
+        "password": "Ahsan@123",
+        "addresses": [
+          {
+            "name": "Muhammad Ahsan Farooq",
+            "email": "farooqahsan72@gmail.com",
+            "phone": "03115529582",
+            "street": "Islamabad",
+            "city": "Islamabad",
+            "state": "Islamabad",
+            "postalcode": "46000"
+          },
+          {
+            "name": "Muhammad Ali",
+            "email": "farooqahsan72@gmail.com",
+            "phone": "03319333704",
+            "street": "House 18 Street 3 G11/4",
+            "city": "Islamabad",
+            "state": "Punjab",
+            "postalcode": "46000"
+          },
+          {
+            "name": "John",
+            "email": "john@gmail.com",
+            "phone": "+92434343534",
+            "street": "Karachi, street 5",
+            "city": "Karachi",
+            "state": "Sindh",
+            "postalcode": "43532"
+          }
+        ],
+        "id": 1
+      },
+      "paymentMethod": "card",
+      "selectedAddress": {
+        "name": "Muhammad Ahsan Farooq",
+        "email": "farooqahsan72@gmail.com",
+        "phone": "03115529582",
+        "street": "Islamabad",
+        "city": "Islamabad",
+        "state": "Islamabad",
+        "postalcode": "46000"
+      },
+      "id": 1
+    },
+    {
+      "items": [
+        {
+          "title": "iPhone X",
+          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "price": 899,
+          "discountPercentage": 17.94,
+          "rating": 4.44,
+          "stock": 34,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/2/1.jpg",
+            "https://i.dummyjson.com/data/products/2/2.jpg",
+            "https://i.dummyjson.com/data/products/2/3.jpg",
+            "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "id": 1
+        },
+        {
+          "title": "iPhone X",
+          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "price": 899,
+          "discountPercentage": 17.94,
+          "rating": 4.44,
+          "stock": 34,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/2/1.jpg",
+            "https://i.dummyjson.com/data/products/2/2.jpg",
+            "https://i.dummyjson.com/data/products/2/3.jpg",
+            "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+          ],
+          "quantity": 3,
+          "user": 1,
+          "id": 2
+        }
+      ],
+      "totalAmmount": 3596,
+      "totalItems": 4,
+      "user": {
+        "email": "test@gmail.com",
+        "password": "Ahsan@123",
+        "addresses": [
+          {
+            "name": "Muhammad Ahsan Farooq",
+            "email": "farooqahsan72@gmail.com",
+            "phone": "03115529582",
+            "street": "Islamabad",
+            "city": "Islamabad",
+            "state": "Islamabad",
+            "postalcode": "46000"
+          },
+          {
+            "name": "Muhammad Ali",
+            "email": "farooqahsan72@gmail.com",
+            "phone": "03319333704",
+            "street": "House 18 Street 3 G11/4",
+            "city": "Islamabad",
+            "state": "Punjab",
+            "postalcode": "46000"
+          },
+          {
+            "name": "John",
+            "email": "john@gmail.com",
+            "phone": "+92434343534",
+            "street": "Karachi, street 5",
+            "city": "Karachi",
+            "state": "Sindh",
+            "postalcode": "43532"
+          }
+        ],
+        "id": 1
+      },
+      "paymentMethod": "card",
+      "selectedAddress": {
+        "name": "Muhammad Ahsan Farooq",
+        "email": "farooqahsan72@gmail.com",
+        "phone": "03115529582",
+        "street": "Islamabad",
+        "city": "Islamabad",
+        "state": "Islamabad",
+        "postalcode": "46000"
+      },
+      "id": 2
+    },
+    {
+      "items": [
+        {
+          "title": "iPhone X",
+          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "price": 899,
+          "discountPercentage": 17.94,
+          "rating": 4.44,
+          "stock": 34,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/2/1.jpg",
+            "https://i.dummyjson.com/data/products/2/2.jpg",
+            "https://i.dummyjson.com/data/products/2/3.jpg",
+            "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "id": 1
+        },
+        {
+          "title": "iPhone X",
+          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "price": 899,
+          "discountPercentage": 17.94,
+          "rating": 4.44,
+          "stock": 34,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/2/1.jpg",
+            "https://i.dummyjson.com/data/products/2/2.jpg",
+            "https://i.dummyjson.com/data/products/2/3.jpg",
+            "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+          ],
+          "quantity": 3,
+          "user": 1,
+          "id": 2
+        }
+      ],
+      "totalAmmount": 3596,
+      "totalItems": 4,
+      "user": {
+        "email": "test@gmail.com",
+        "password": "Ahsan@123",
+        "addresses": [
+          {
+            "name": "Muhammad Ahsan Farooq",
+            "email": "farooqahsan72@gmail.com",
+            "phone": "03115529582",
+            "street": "Islamabad",
+            "city": "Islamabad",
+            "state": "Islamabad",
+            "postalcode": "46000"
+          },
+          {
+            "name": "Muhammad Ali",
+            "email": "farooqahsan72@gmail.com",
+            "phone": "03319333704",
+            "street": "House 18 Street 3 G11/4",
+            "city": "Islamabad",
+            "state": "Punjab",
+            "postalcode": "46000"
+          },
+          {
+            "name": "John",
+            "email": "john@gmail.com",
+            "phone": "+92434343534",
+            "street": "Karachi, street 5",
+            "city": "Karachi",
+            "state": "Sindh",
+            "postalcode": "43532"
+          }
+        ],
+        "id": 1
+      },
+      "paymentMethod": "card",
+      "selectedAddress": {
+        "name": "Muhammad Ahsan Farooq",
+        "email": "farooqahsan72@gmail.com",
+        "phone": "03115529582",
+        "street": "Islamabad",
+        "city": "Islamabad",
+        "state": "Islamabad",
+        "postalcode": "46000"
+      },
+      "id": 3
+    },
+    {
+      "items": [
+        {
+          "title": "iPhone X",
+          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "price": 899,
+          "discountPercentage": 17.94,
+          "rating": 4.44,
+          "stock": 34,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/2/1.jpg",
+            "https://i.dummyjson.com/data/products/2/2.jpg",
+            "https://i.dummyjson.com/data/products/2/3.jpg",
+            "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "id": 1
+        },
+        {
+          "title": "iPhone X",
+          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "price": 899,
+          "discountPercentage": 17.94,
+          "rating": 4.44,
+          "stock": 34,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/2/1.jpg",
+            "https://i.dummyjson.com/data/products/2/2.jpg",
+            "https://i.dummyjson.com/data/products/2/3.jpg",
+            "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+          ],
+          "quantity": 3,
+          "user": 1,
+          "id": 2
+        }
+      ],
+      "totalAmmount": 3596,
+      "totalItems": 4,
+      "user": {
+        "email": "test@gmail.com",
+        "password": "Ahsan@123",
+        "addresses": [
+          {
+            "name": "Muhammad Ahsan Farooq",
+            "email": "farooqahsan72@gmail.com",
+            "phone": "03115529582",
+            "street": "Islamabad",
+            "city": "Islamabad",
+            "state": "Islamabad",
+            "postalcode": "46000"
+          },
+          {
+            "name": "Muhammad Ali",
+            "email": "farooqahsan72@gmail.com",
+            "phone": "03319333704",
+            "street": "House 18 Street 3 G11/4",
+            "city": "Islamabad",
+            "state": "Punjab",
+            "postalcode": "46000"
+          },
+          {
+            "name": "John",
+            "email": "john@gmail.com",
+            "phone": "+92434343534",
+            "street": "Karachi, street 5",
+            "city": "Karachi",
+            "state": "Sindh",
+            "postalcode": "43532"
+          }
+        ],
+        "id": 1
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": null,
+      "id": 4
+    }
   ]
 }
