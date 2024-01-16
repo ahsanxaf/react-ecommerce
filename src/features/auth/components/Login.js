@@ -70,14 +70,6 @@ export default function Login() {
                 >
                   Password
                 </label>
-                <div className="text-sm">
-                  <a
-                    href="#"
-                    className="font-semibold text-indigo-600 hover:text-indigo-500"
-                  >
-                    Forgot password?
-                  </a>
-                </div>
               </div>
               <div className="mt-2">
                 <input
@@ -91,6 +83,14 @@ export default function Login() {
                 {error && (
                   <p className="text-red-500">{error.message}</p>
                 )}
+                <div className="text-sm">
+                  <a
+                    href="#"
+                    className="font-semibold flex justify-end text-indigo-600 hover:text-indigo-500"
+                  >
+                    Forgot password?
+                  </a>
+                </div>
               </div>
             </div>
 
