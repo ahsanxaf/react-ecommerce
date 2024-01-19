@@ -10,7 +10,7 @@ export function createUser(userData) {
     resolve({data});
   }
   );
-}
+};
 export function checkUser(loginInfo) {
   return new Promise(async (resolve, reject) => {
     const email = loginInfo.email;
@@ -30,4 +30,10 @@ export function checkUser(loginInfo) {
   }
   );
 };
-
+export function signOut(userId) {
+  return new Promise(async (resolve) => {
+    
+    resolve({data: 'success'});
+  }
+  );
+};
