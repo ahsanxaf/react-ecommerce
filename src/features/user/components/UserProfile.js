@@ -59,6 +59,9 @@ export default function UserProfile() {
           <h5 className="text-sm font-bold tracking-tight text-red-900 my-5">
             Email Address: {user.email}
           </h5>
+          {user.role === 'admin' && <h5 className="text-sm font-bold tracking-tight text-red-900 my-5">
+            Role: {user.role}
+          </h5>}
         </div>
 
         <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
