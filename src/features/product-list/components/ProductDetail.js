@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react'
 import { StarIcon } from '@heroicons/react/20/solid'
 import { RadioGroup } from '@headlessui/react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchProductByIdAsync, selectProductById } from '../productSlice'
+import { fetchProductByIdAsync, selectProductById, selectProductListStatus } from '../productSlice'
 import { useParams } from 'react-router-dom'
 import { selectLoggedInUser } from '../../auth/authSlice'
-import { addToCartAsync } from '../../cart/cartSlice'
+import { addToCartAsync, selectItems } from '../../cart/cartSlice'
 import { discountedPrice } from '../../../app/constants'
+import { useAlert } from "react-alert";
+import { ColorRing } from 'react-loader-spinner'
 
 
 
@@ -44,6 +46,9 @@ export default function ProductDetail() {
   const dispatch = useDispatch();
   const params = useParams();
   const user = useSelector(selectLoggedInUser);
+  const items = useSelector(selectItems);
+  const alert = useAlert();
+  const status = useSelector(selectProductListStatus);
   //TODO: in server data we will add color, sizes etc
 
   useEffect(()=>{
@@ -52,13 +57,31 @@ export default function ProductDetail() {
   
   const handleCart = (e) => {
     e.preventDefault();
-    const newItem = {...product, quantity: 1, user: user.id};
-    delete newItem['id'];
-    dispatch(addToCartAsync(newItem));
+    if(items.findIndex(item=>item.productId===product.id)<0){
+      const newItem = {...product, productId: product.id, quantity: 1, user: user.id};
+      delete newItem['id'];
+      dispatch(addToCartAsync(newItem));
+      alert.success('Product added to cart')
+      //TODO: it will be based on server response of backend
+    }else{
+      alert.info('oops! This product has already been added to the cart')
+    }
+    
   }
 
   return (
     <div className="bg-white">
+    {status === "loading" ? (
+      <ColorRing
+        visible={true}
+        height="80"
+        width="80"
+        ariaLabel="color-ring-loading"
+        wrapperStyle={{}}
+        wrapperClass="color-ring-wrapper"
+        colors={["#5D3FD3", "#800080", "#7F00FF", "#CF9FFF", "#C3B1E1"]}
+      />
+    ) : null}
       {product && <div className="pt-6">
         <nav aria-label="Breadcrumb">
           <ol role="list" className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">

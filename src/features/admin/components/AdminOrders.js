@@ -8,6 +8,7 @@ import {
   updateOrderAsync,
 } from "../../order/orderSlice";
 import { EyeIcon, PencilIcon } from "@heroicons/react/24/solid";
+import Pagination from "../../common/Pagination";
 
 function AdminOrders() {
   const [page, setPage] = useState(1);
@@ -15,11 +16,22 @@ function AdminOrders() {
   const orders = useSelector(selectOrders);
   const totalOrders = useSelector(selectTotalOrders);
   const [editableOrderId, setEditableOrderId] = useState(-1);
+  const [sort, setSort] = useState({});
+
+  const handlePage = (page) => {
+    setPage(page);
+  };
+  
+  const handleSort = (sortOption) => {
+    const sort = { _sort: sortOption.sort, _order: sortOption.order };
+    console.log({ sort });
+    setSort(sort);
+  };
 
   useEffect(() => {
     const pagination = { _page: page, _limit: ITEMS_PER_PAGE };
     dispatch(fetchAllOrdersAsync(pagination));
-  }, [dispatch, page]);
+  }, [dispatch, page, sort]);
 
   const handleEdit = (order) => {
     setEditableOrderId(order.id);
@@ -48,19 +60,27 @@ function AdminOrders() {
     }
   };
 
+
   return (
     <>
-      <div>{totalOrders}</div>
       {/* component */}
       <div className="p-6 overflow-y-scroll overflow-x-scroll px-0 bg-white">
         <table className="mt-4 w-full min-w-max table-auto text-left">
           <thead>
             <tr>
-              <th className="uppercase cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
+              <th
+                onClick={(e) =>
+                  handleSort({
+                    sort: "id",
+                    order: sort?._order === "asc" ? "desc" : "asc",
+                  })
+                }
+                className="uppercase cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50"
+              >
                 <p className="antialiased font-sans text-sm text-blue-gray-900 flex items-center justify-between gap-2 font-bold leading-none opacity-70">
                   Order#{" "}
                   <svg
-                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns=""
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth={2}
@@ -80,7 +100,7 @@ function AdminOrders() {
                 <p className="antialiased font-sans text-sm text-blue-gray-900 flex items-center justify-between gap-2 font-bold leading-none opacity-70">
                   Items{" "}
                   <svg
-                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns=""
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth={2}
@@ -100,7 +120,7 @@ function AdminOrders() {
                 <p className="antialiased font-sans text-sm text-blue-gray-900 flex items-center justify-between gap-2 font-bold leading-none opacity-70">
                   Total Ammount{" "}
                   <svg
-                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns=""
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth={2}
@@ -120,7 +140,7 @@ function AdminOrders() {
                 <p className="antialiased font-sans text-sm text-blue-gray-900 flex items-center justify-between gap-2 font-bold leading-none opacity-70">
                   Status{" "}
                   <svg
-                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns=""
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth={2}
@@ -140,7 +160,7 @@ function AdminOrders() {
                 <p className="antialiased font-sans text-sm text-blue-gray-900 flex items-center justify-between gap-2 font-bold leading-none opacity-70">
                   Shipping Address{" "}
                   <svg
-                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns=""
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth={2}
@@ -215,9 +235,18 @@ function AdminOrders() {
                           className="rounded-xl"
                           onChange={(e) => handleUpdateStatus(e, order)}
                         >
-                          <option className="text-purple-500" value="pending">Pending</option>
-                          <option className="text-yellow-500" value="dispatched">Dispatched</option>
-                          <option className="text-green-500" value="delivered">Delivered</option>
+                          <option className="text-purple-500" value="pending">
+                            Pending
+                          </option>
+                          <option
+                            className="text-yellow-500"
+                            value="dispatched"
+                          >
+                            Dispatched
+                          </option>
+                          <option className="text-green-500" value="delivered">
+                            Delivered
+                          </option>
                           <option className="text-red-600" value="cancelled">
                             Cancelled
                           </option>
@@ -281,6 +310,12 @@ function AdminOrders() {
             ))}
           </tbody>
         </table>
+        <Pagination
+          page={page}
+          setPage={setPage}
+          handlePage={handlePage}
+          totalItems={totalOrders}
+        ></Pagination>
       </div>
       <footer className="relative pt-8 pb-6 mt-16">
         <div className="container mx-auto px-4">
