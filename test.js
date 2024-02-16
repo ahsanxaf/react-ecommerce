@@ -561,3 +561,5 @@ const brands = [...new Set([...products.map(p=>p.brand)])];
 // console.log(categories)
 
 console.log(brands.map(c=>({value:c, label:c.split('_').join(' '), checked: false})))
+
+// json-server --watch data.json -p 8080
