@@ -199,12 +199,13 @@ function AdminOrders() {
                   {order.items.map((item) => (
                     <div className="flex items-center gap-3">
                       <img
-                        src={item.thumbnail}
+                        src={item.product.thumbnail}
+                        alt={item.product.thumbnail}
                         className="inline-block relative object-cover object-center !rounded-full w-9 h-9 rounded-md"
                       />
                       <div className="flex flex-col">
                         <span className="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-medium">
-                          {item.title} - ${discountedPrice(item)}
+                          {item.product.title} - ${discountedPrice(item.product)}
                         </span>
                         <span className="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">
                           Quantity: {item.quantity}
@@ -216,7 +217,7 @@ function AdminOrders() {
                 <td className="p-4 border-b border-blue-gray-50">
                   <div className="flex flex-col">
                     <p className="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">
-                      ${order.totalAmmount}
+                      ${order.totalAmount}
                     </p>
                   </div>
                 </td>

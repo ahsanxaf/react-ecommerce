@@ -14,60 +14,13 @@ import { createOrderAsync, selectCurrentOrder } from "../features/order/orderSli
 import { selectUserInfo } from "../features/user/userSlice";
 import { discountedPrice } from "../app/constants";
 
-const products = [
-  {
-    id: 1,
-    name: "Throwback Hip Bag",
-    href: "#",
-    color: "Salmon",
-    price: "$90.00",
-    quantity: 1,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg",
-    imageAlt:
-      "Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt.",
-  },
-  {
-    id: 2,
-    name: "Medium Stuff Satchel",
-    href: "#",
-    color: "Blue",
-    price: "$32.00",
-    quantity: 1,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg",
-    imageAlt:
-      "Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.",
-  },
-  // More products...
-];
-
-const addresses = [
-  {
-    name: "John wick",
-    street: "11th Main",
-    city: "Islamabad",
-    postalcode: 46000,
-    state: "Punjab",
-    phone: 43253223523532,
-  },
-  {
-    name: "John Doe",
-    street: "15th Main",
-    city: "Lahore",
-    postalcode: 658768,
-    state: "Punjab",
-    phone: 6576764546748,
-  },
-];
-
 function Checkout() {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(true);
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState("cash");
   const items = useSelector(selectItems);
-  const totalAmmount = items.reduce(
+  const totalAmount = items.reduce(
     (ammount, item) => discountedPrice(item.product) * item.quantity + ammount,
     0
   );
@@ -101,7 +54,7 @@ function Checkout() {
     if (selectedAddress && paymentMethod) {
       const order = {
         items,
-        totalAmmount,
+        totalAmount,
         totalItems,
         user:user.id,
         paymentMethod,
@@ -464,7 +417,7 @@ function Checkout() {
               <div className="border-t border-gray-200 px-2 py-6 sm:px-2">
                 <div className="flex justify-between my-2 text-base font-medium text-gray-900">
                   <p>Subtotal</p>
-                  <p>${totalAmmount}</p>
+                  <p>${totalAmount}</p>
                 </div>
                 <div className="flex justify-between my-2 text-base font-medium text-gray-900">
                   <p>Total Items in Cart</p>

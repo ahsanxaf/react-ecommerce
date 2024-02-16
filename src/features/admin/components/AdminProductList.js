@@ -30,69 +30,6 @@ const sortOptions = [
   { name: "Price: Low to High", sort: "price", order: "asc", current: false },
   { name: "Price: High to Low", sort: "price", order: "desc", current: false },
 ];
-const oldproducts = [
-  {
-    id: 1,
-    name: "Basic Tee",
-    href: "#",
-    thumbnail:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
-    title: "Front of men's Basic Tee in black.",
-    price: "$35",
-    color: "Black",
-  },
-  {
-    id: 2,
-    name: "Basic Tee",
-    href: "#",
-    thumbnail:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-02.jpg",
-    title: "Front of men's Basic Tee in black.",
-    price: "$35",
-    color: "Black",
-  },
-  {
-    id: 3,
-    name: "Basic Tee",
-    href: "#",
-    thumbnail:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-03.jpg",
-    title: "Front of men's Basic Tee in black.",
-    price: "$35",
-    color: "Black",
-  },
-  {
-    id: 4,
-    name: "Basic Tee",
-    href: "#",
-    thumbnail:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-04.jpg",
-    title: "Front of men's Basic Tee in black.",
-    price: "$35",
-    color: "Black",
-  },
-  {
-    id: 5,
-    name: "Basic Tee",
-    href: "#",
-    thumbnail:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-02.jpg",
-    title: "Front of men's Basic Tee in black.",
-    price: "$35",
-    color: "Black",
-  },
-  {
-    id: 6,
-    name: "Basic Tee",
-    href: "#",
-    thumbnail:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-04.jpg",
-    title: "Front of men's Basic Tee in black.",
-    price: "$35",
-    color: "Black",
-  },
-  // More products...
-];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -124,8 +61,7 @@ export default function AdminProductList() {
 
   useEffect(() => {
     const pagination = { _page: page, _limit: ITEMS_PER_PAGE };
-    // dispatch(fetchAllProductsAsync());
-    dispatch(fetchProductsByFiltersAsync({ filter, sort, pagination }));
+    dispatch(fetchProductsByFiltersAsync({ filter, sort, pagination, admin:true }));
   }, [dispatch, filter, sort, page]);
 
   useEffect(() => {
