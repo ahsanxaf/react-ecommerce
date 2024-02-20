@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchLoggedInUserOrdersAsync, selectUserInfo, selectUserOrders } from "../userSlice";
+import { fetchLoggedInUserOrdersAsync, selectUserInfoStatus, selectUserOrders } from "../userSlice";
 import { discountedPrice } from "../../../app/constants";
+import { ColorRing } from "react-loader-spinner";
 
 export default function UserOrders() {
   const dispatch = useDispatch();
-  const userInfo = useSelector(selectUserInfo);
+  // const userInfo = useSelector(selectUserInfo);
   const orders = useSelector(selectUserOrders);
+  const status = useSelector(selectUserInfoStatus);
 
   useEffect(() => {
-    dispatch(fetchLoggedInUserOrdersAsync(userInfo.id));
-  }, [dispatch, userInfo]);
+    dispatch(fetchLoggedInUserOrdersAsync());
+  }, [dispatch]);
 
   return (
     <div>
-      {orders.map((order) => (
+      {orders && orders.map((order) => (
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 bg-white mt-12">
           <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
             <h1 className="text-2xl font-bold tracking-tight text-gray-900 my-5">
@@ -69,7 +71,7 @@ export default function UserOrders() {
           <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
             <div className="flex justify-between my-2 text-base font-medium text-gray-900">
               <p>Subtotal</p>
-              <p>${order.totalAmmount}</p>
+              <p>${order.totalAmount}</p>
             </div>
             <div className="flex justify-between my-2 text-base font-medium text-gray-900">
               <p>Total Items in Cart</p>
@@ -102,6 +104,17 @@ export default function UserOrders() {
           </div>
         </div>
       ))}
+      {status === "loading" ? (
+        <ColorRing
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="color-ring-loading"
+          wrapperStyle={{}}
+          wrapperClass="color-ring-wrapper"
+          colors={["#5D3FD3", "#800080", "#7F00FF", "#CF9FFF", "#C3B1E1"]}
+        />
+      ) : null}
     </div>
   );
 }

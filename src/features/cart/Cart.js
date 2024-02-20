@@ -5,6 +5,7 @@ import {
   updateCartAsync,
   deleteItemFromCartAsync,
   selectCartStatus,
+  selectCartLoaded,
 } from "./cartSlice";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -46,6 +47,7 @@ export default function Cart() {
   const [open, setOpen] = useState(true);
   const [openModal, setOpenModal] = useState(null);
   const items = useSelector(selectItems);
+  const cartLoaded = useSelector(selectCartLoaded);
   const totalAmmount = items.reduce(
     (ammount, item) => discountedPrice(item.product) * item.quantity + ammount,
     0
@@ -63,7 +65,7 @@ export default function Cart() {
 
   return (
     <>
-      {!items.length && <Navigate to="/" replace={true}></Navigate>}
+      {!items.length && cartLoaded && <Navigate to="/" replace={true}></Navigate>}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 bg-white mt-12">
         <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 my-5">
