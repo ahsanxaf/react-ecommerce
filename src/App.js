@@ -133,7 +133,7 @@ const router = createBrowserRouter([
     element: <ForgotPasswordPage></ForgotPasswordPage>,
   },
   {
-    path: "/orders",
+    path: "/my-orders",
     element: <UserOrdersPage></UserOrdersPage>,
   },
   {

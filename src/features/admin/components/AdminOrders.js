@@ -21,7 +21,7 @@ function AdminOrders() {
   const handlePage = (page) => {
     setPage(page);
   };
-  
+
   const handleSort = (sortOption) => {
     const sort = { _sort: sortOption.sort, _order: sortOption.order };
     console.log({ sort });
@@ -39,8 +39,14 @@ function AdminOrders() {
 
   const handleShow = () => {};
 
-  const handleUpdateStatus = (e, order) => {
+  const handleOrderStatus = (e, order) => {
     const updatedOrder = { ...order, status: e.target.value };
+    dispatch(updateOrderAsync(updatedOrder));
+    setEditableOrderId(-1);
+  };
+
+  const handleOrderPaymentStatus = (e, order) => {
+    const updatedOrder = { ...order, paymentStatus: e.target.value };
     dispatch(updateOrderAsync(updatedOrder));
     setEditableOrderId(-1);
   };
@@ -53,6 +59,8 @@ function AdminOrders() {
         return "bg-yellow-500/20 text-yellow-600";
       case "delivered":
         return "bg-green-500/20 text-green-600";
+      case "recieved":
+        return "bg-green-500/20 text-green-600";
       case "cancelled":
         return "bg-red-500/20 text-red-600";
       default:
@@ -60,10 +68,8 @@ function AdminOrders() {
     }
   };
 
-
   return (
     <>
-      {/* component */}
       <div className="p-6 overflow-y-scroll overflow-x-scroll px-0 bg-white">
         <table className="mt-4 w-full min-w-max table-auto text-left">
           <thead>
@@ -138,7 +144,47 @@ function AdminOrders() {
               </th>
               <th className="uppercase cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
                 <p className="antialiased font-sans text-sm text-blue-gray-900 flex items-center justify-between gap-2 font-bold leading-none opacity-70">
-                  Status{" "}
+                  order status{" "}
+                  <svg
+                    xmlns=""
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2}
+                    stroke="currentColor"
+                    aria-hidden="true"
+                    className="h-4 w-4"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"
+                    />
+                  </svg>
+                </p>
+              </th>
+              <th className="uppercase cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
+                <p className="antialiased font-sans text-sm text-blue-gray-900 flex items-center justify-between gap-2 font-bold leading-none opacity-70">
+                  Payment method{" "}
+                  <svg
+                    xmlns=""
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2}
+                    stroke="currentColor"
+                    aria-hidden="true"
+                    className="h-4 w-4"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"
+                    />
+                  </svg>
+                </p>
+              </th>
+              <th className="uppercase cursor-pointer border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 transition-colors hover:bg-blue-gray-50">
+                <p className="antialiased font-sans text-sm text-blue-gray-900 flex items-center justify-between gap-2 font-bold leading-none opacity-70">
+                  Payment Status{" "}
                   <svg
                     xmlns=""
                     fill="none"
@@ -205,7 +251,8 @@ function AdminOrders() {
                       />
                       <div className="flex flex-col">
                         <span className="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-medium">
-                          {item.product.title} - ${discountedPrice(item.product)}
+                          {item.product.title} - $
+                          {discountedPrice(item.product)}
                         </span>
                         <span className="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">
                           Quantity: {item.quantity}
@@ -234,7 +281,7 @@ function AdminOrders() {
                       ) : (
                         <select
                           className="rounded-xl"
-                          onChange={(e) => handleUpdateStatus(e, order)}
+                          onChange={(e) => handleOrderStatus(e, order)}
                         >
                           <option className="text-purple-500" value="pending">
                             Pending
@@ -250,6 +297,39 @@ function AdminOrders() {
                           </option>
                           <option className="text-red-600" value="cancelled">
                             Cancelled
+                          </option>
+                        </select>
+                      )}
+                    </div>
+                  </div>
+                </td>
+                <td className="p-4 border-b border-blue-gray-50">
+                  <div className="flex flex-col">
+                    <p className="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">
+                      {order.paymentMethod}
+                    </p>
+                  </div>
+                </td>
+                <td className="p-4 border-b border-blue-gray-50">
+                  <div className="w-max">
+                    <div
+                      className={`${statusColor(
+                        order.paymentStatus
+                      )} relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none py-1 px-2 text-xs rounded-md`}
+                      style={{ opacity: 1 }}
+                    >
+                      {order.id !== editableOrderId ? (
+                        <span>{order.paymentStatus}</span>
+                      ) : (
+                        <select
+                          className="rounded-xl"
+                          onChange={(e) => handleOrderPaymentStatus(e, order)}
+                        >
+                          <option className="text-purple-500" value="pending">
+                            Pending
+                          </option>
+                          <option className="text-green-500" value="recieved">
+                            Recieved
                           </option>
                         </select>
                       )}

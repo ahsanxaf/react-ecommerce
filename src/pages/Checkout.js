@@ -13,13 +13,15 @@ import {
 import { createOrderAsync, selectCurrentOrder } from "../features/order/orderSlice";
 import { selectUserInfo } from "../features/user/userSlice";
 import { discountedPrice } from "../app/constants";
+import { useAlert } from "react-alert";
 
 function Checkout() {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(true);
   const [selectedAddress, setSelectedAddress] = useState(null);
-  const [paymentMethod, setPaymentMethod] = useState("cash");
+  const [paymentMethod, setPaymentMethod] = useState();
   const items = useSelector(selectItems);
+  const alert = useAlert();
   const totalAmount = items.reduce(
     (ammount, item) => discountedPrice(item.product) * item.quantity + ammount,
     0
@@ -65,7 +67,7 @@ function Checkout() {
       // need to redirect to order success page
     }else{
       //TODO: we can user proper messaging here
-      alert('Enter Address and Payment method')
+      alert.error('Enter Address and Payment method')
     }
     //TODO: redirect to order process page
     //TODO: clear cart after order

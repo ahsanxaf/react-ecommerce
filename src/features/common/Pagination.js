@@ -51,7 +51,8 @@ export default function Pagination({ page, setPage, handlePage, totalItems }) {
               {Array.from({ length: totalPages }).map(
                 (el, index) => (
                   <div
-                    onClick={(e) => handlePage(page<totalPages?page + 1:page)}
+                    key={index}
+                    onClick={(e) => handlePage(page+1)}
                     aria-current="page"
                     className={`relative cursor-pointer z-10 inline-flex items-center ${
                       index + 1 === page
@@ -65,7 +66,7 @@ export default function Pagination({ page, setPage, handlePage, totalItems }) {
               )}
   
               <div
-                onClick={(e) => handlePage(page + 1)}
+                onClick={(e) => handlePage(page<totalPages?page + 1:page)}
                 className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
               >
                 <span className="sr-only">Next</span>
