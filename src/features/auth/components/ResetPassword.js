@@ -1,12 +1,14 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import { resetPasswordAsync, selectError, selectPasswordReset } from "../authSlice";
+import { resetPasswordAsync, selectAuthStatus, selectError, selectPasswordReset } from "../authSlice";
+import { CirclesWithBar } from "react-loader-spinner";
 
 export default function ResetPassword() {
   const dispatch = useDispatch();
   const passwordReset = useSelector(selectPasswordReset);
   const error = useSelector(selectError);
+  const status = useSelector(selectAuthStatus);
   const query = new URLSearchParams(window.location.search);
   const token = query.get("token");
   const email = query.get("email");
@@ -24,15 +26,15 @@ export default function ResetPassword() {
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <img
               className="mx-auto h-10 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              alt="Your Company"
+              src="https://img.hotimg.com/S__4_-removebg-preview.png"
+              alt="smile store"
             />
-            <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-              Enter your New Password
+            <h2 className="mt-5 text-center text-2xl font-bold leading-9 tracking-tight text-indigo-900">
+              Enter Your New Password
             </h2>
           </div>
 
-          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+          <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm bg-white p-10">
             <form
               noValidate
               onSubmit={handleSubmit((data) => {
@@ -116,7 +118,22 @@ export default function ResetPassword() {
                   type="submit"
                   className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
-                  Reset Password
+                  {status === "loading" ? (
+                  <CirclesWithBar
+                    height="25"
+                    width="25"
+                    color="#ffffff"
+                    outerCircleColor="#ffffff"
+                    innerCircleColor="#ffffff"
+                    barColor="#ffffff"
+                    ariaLabel="circles-with-bar-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                    visible={true}
+                  />
+                ) : (
+                  "Reset Password"
+                )}
                 </button>
               </div>
             </form>

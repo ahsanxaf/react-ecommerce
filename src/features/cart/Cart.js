@@ -10,8 +10,7 @@ import {
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, Navigate } from "react-router-dom";
-import { discountedPrice } from "../../app/constants";
-import { ColorRing } from "react-loader-spinner";
+import { CirclesWithBar, ColorRing } from "react-loader-spinner";
 import Modal from "../common/Modal";
 
 export default function Cart() {
@@ -21,7 +20,7 @@ export default function Cart() {
   const items = useSelector(selectItems);
   const cartLoaded = useSelector(selectCartLoaded);
   const totalAmmount = items.reduce(
-    (ammount, item) => discountedPrice(item.product) * item.quantity + ammount,
+    (ammount, item) => item.product.discountedPrice * item.quantity + ammount,
     0
   );
   const totalItems = items.reduce((total, item) => item.quantity + total, 0);
@@ -37,7 +36,9 @@ export default function Cart() {
 
   return (
     <>
-      {!items.length && cartLoaded && <Navigate to="/" replace={true}></Navigate>}
+      {!items.length && cartLoaded && (
+        <Navigate to="/" replace={true}></Navigate>
+      )}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 bg-white mt-12">
         <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 my-5">
@@ -72,9 +73,11 @@ export default function Cart() {
                         <h3>
                           <a href={item.product.href}>{item.product.title}</a>
                         </h3>
-                        <p className="ml-4">${discountedPrice(item.product)}</p>
+                        <p className="ml-4">${item.product.discountedPrice}</p>
                       </div>
-                      <p className="mt-1 text-sm text-gray-500">{item.product.brand}</p>
+                      <p className="mt-1 text-sm text-gray-500">
+                        {item.product.brand}
+                      </p>
                     </div>
                     <div className="flex flex-1 items-end justify-between text-sm">
                       <div className="text-gray-500">
@@ -100,14 +103,14 @@ export default function Cart() {
                         <Modal
                           title={`Remove ${item.product.title}`}
                           message={`Are you sure you want to remove ${item.product.title} from cart?`}
-                          dangerOption='Remove'
+                          dangerOption="Remove"
                           cancelOption="cancel"
                           action={(e) => handleRemove(e, item.product.id)}
                           cancelAction={() => setOpenModal(null)}
                           showModal={openModal === item.id}
                         ></Modal>
                         <button
-                          onClick={e=>setOpenModal(item.id)}
+                          onClick={(e) => setOpenModal(item.id)}
                           type="button"
                           className="font-medium text-indigo-600 hover:text-indigo-500"
                         >
@@ -139,7 +142,22 @@ export default function Cart() {
               to="/checkout"
               className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
             >
-              Checkout
+              {status === "loading" ? (
+                <CirclesWithBar
+                  height="25"
+                  width="25"
+                  color="#ffffff"
+                  outerCircleColor="#ffffff"
+                  innerCircleColor="#ffffff"
+                  barColor="#ffffff"
+                  ariaLabel="circles-with-bar-loading"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                  visible={true}
+                />
+              ) : (
+                "Checkout"
+              )}
             </Link>
           </div>
           <div className="mt-6 flex justify-center text-center text-sm text-gray-500">

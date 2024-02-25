@@ -2,12 +2,19 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { Link, Navigate } from "react-router-dom";
-import { loginUserAsync, selectError, selectLoggedInUser } from "../authSlice";
+import {
+  loginUserAsync,
+  selectAuthStatus,
+  selectError,
+  selectLoggedInUser,
+} from "../authSlice";
+import { CirclesWithBar, ColorRing } from "react-loader-spinner";
 
 export default function Login() {
   const dispatch = useDispatch();
   const error = useSelector(selectError);
   const user = useSelector(selectLoggedInUser);
+  const status = useSelector(selectAuthStatus);
   const {
     register,
     handleSubmit,
@@ -16,26 +23,32 @@ export default function Login() {
 
   return (
     <>
-      {user && <Navigate to='/' replace={true}></Navigate>}
+      {user && <Navigate to="/" replace={true}></Navigate>}
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
-            className="mx-auto h-10 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-            alt="Your Company"
+            className="mx-auto h-12 w-12"
+            src="https://img.hotimg.com/S__4_-removebg-preview.png"
+            alt="smile store"
           />
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Sign in to your account
+          <h2 className="mt-5 text-center text-xl font-bold leading-9 tracking-tight text-indigo-900">
+            Sign in to Your Account
           </h2>
         </div>
 
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form noValidate
+        <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm bg-white p-10">
+          <form
+            noValidate
             onSubmit={handleSubmit((data) => {
-              dispatch(loginUserAsync({email:data.email, password:data.password}))
+              dispatch(
+                loginUserAsync({ email: data.email, password: data.password })
+              );
               console.log(data);
             })}
-           className="space-y-6" action="#" method="POST">
+            className="space-y-6"
+            action="#"
+            method="POST"
+          >
             <div>
               <label
                 htmlFor="email"
@@ -85,7 +98,7 @@ export default function Login() {
                 )}
                 <div className="text-sm">
                   <Link
-                    to='/forgot-password'
+                    to="/forgot-password"
                     className="font-semibold flex justify-end text-indigo-600 hover:text-indigo-500"
                   >
                     Forgot password?
@@ -99,7 +112,22 @@ export default function Login() {
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Sign in
+                {status === "loading" ? (
+                  <CirclesWithBar
+                    height="25"
+                    width="25"
+                    color="#ffffff"
+                    outerCircleColor="#ffffff"
+                    innerCircleColor="#ffffff"
+                    barColor="#ffffff"
+                    ariaLabel="circles-with-bar-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                    visible={true}
+                  />
+                ) : (
+                  "Sign in"
+                )}
               </button>
             </div>
           </form>

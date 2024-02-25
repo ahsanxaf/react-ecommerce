@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ITEMS_PER_PAGE, discountedPrice } from "../../../app/constants";
+import { ITEMS_PER_PAGE } from "../../../app/constants";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchAllOrdersAsync,
@@ -309,7 +309,7 @@ function AdminOrders() {
                         <div className="flex flex-col">
                           <span className="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-medium">
                             {item.product.title} - $
-                            {discountedPrice(item.product)}
+                            {item.product.discountedPrice}
                           </span>
                           <span className="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal">
                             Quantity: {item.quantity}

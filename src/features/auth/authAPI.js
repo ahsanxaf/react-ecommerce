@@ -6,7 +6,6 @@ export function createUser(userData) {
       headers: { "content-type": "application/json" },
     });
     const data = await response.json();
-    //TODO: on server it will return only the relevent info(without password)
     resolve({ data });
   });
 }
@@ -14,8 +13,6 @@ export function createUser(userData) {
 export function loginUser(loginInfo) {
   return new Promise(async (resolve, reject) => {
     try {
-      // const email = loginInfo.email;
-      // const password = loginInfo.password;
       const response = await fetch("/auth/login", {
         method: "POST",
         body: JSON.stringify(loginInfo),
@@ -38,8 +35,6 @@ export function loginUser(loginInfo) {
 export function checkAuth() {
   return new Promise(async (resolve, reject) => {
     try {
-      // const email = loginInfo.email;
-      // const password = loginInfo.password;
       const response = await fetch("/auth/check");
       if (response.ok) {
         const data = await response.json();

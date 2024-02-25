@@ -10,16 +10,8 @@ import {
 import { useParams } from "react-router-dom";
 import { selectLoggedInUser } from "../../auth/authSlice";
 import { addToCartAsync, selectItems } from "../../cart/cartSlice";
-import { discountedPrice } from "../../../app/constants";
 import { useAlert } from "react-alert";
-import { ColorRing } from "react-loader-spinner";
-
-const highlights = [
-  "Hand cut and sewn locally",
-  "Dyed with our proprietary colors",
-  "Pre-washed & pre-shrunk",
-  "Ultra-soft 100% cotton",
-];
+import { CirclesWithBar, ColorRing } from "react-loader-spinner";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -35,7 +27,6 @@ export default function ProductDetail() {
   const items = useSelector(selectItems);
   const alert = useAlert();
   const status = useSelector(selectProductListStatus);
-  //TODO: in server data we will add color, sizes etc
 
   useEffect(() => {
     dispatch(fetchProductByIdAsync(params.id));
@@ -54,9 +45,7 @@ export default function ProductDetail() {
       if(selectedSize){
         newItem.size = selectedSize;
       }
-      dispatch(addToCartAsync(newItem));
-      alert.success("Product added to cart");
-      //TODO: it will be based on server response of backend
+      dispatch(addToCartAsync({item: newItem, alert}));
     } else {
       alert.info("oops! This product has already been added to the cart");
     }
@@ -166,7 +155,7 @@ export default function ProductDetail() {
                 ${product.price}
               </p>
               <p className="text-3xl tracking-tight text-gray-900">
-                ${discountedPrice(product)}
+                ${product.discountedPrice}
               </p>
 
               {/* Reviews */}
@@ -320,7 +309,19 @@ export default function ProductDetail() {
                   type="submit"
                   className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
-                  Add to Cart
+                  {status === 'loading' ? <CirclesWithBar
+                    height="25"
+                    width="25"
+                    color="#ffffff"
+                    outerCircleColor="#ffffff"
+                    innerCircleColor="#ffffff"
+                    barColor="#ffffff"
+                    ariaLabel="circles-with-bar-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                    visible={true}
+                  /> : 'Add to Cart'}
+                  
                 </button>
               </form>
             </div>
@@ -337,7 +338,7 @@ export default function ProductDetail() {
                 </div>
               </div>
 
-              {product.highlights && <div className="mt-10">
+              {product.highlights && product.highlights.length>0 && <div className="mt-10">
                 <h3 className="text-sm font-medium text-gray-900">
                   Highlights
                 </h3>

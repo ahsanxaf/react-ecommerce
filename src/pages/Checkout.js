@@ -10,10 +10,10 @@ import { useForm } from "react-hook-form";
 import {
   updateUserAsync,
 } from "../features/user/userSlice";
-import { createOrderAsync, selectCurrentOrder } from "../features/order/orderSlice";
+import { createOrderAsync, selectCreateOrderStatus, selectCurrentOrder } from "../features/order/orderSlice";
 import { selectUserInfo } from "../features/user/userSlice";
-import { discountedPrice } from "../app/constants";
 import { useAlert } from "react-alert";
+import { CirclesWithBar } from "react-loader-spinner";
 
 function Checkout() {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ function Checkout() {
   const items = useSelector(selectItems);
   const alert = useAlert();
   const totalAmount = items.reduce(
-    (ammount, item) => discountedPrice(item.product) * item.quantity + ammount,
+    (ammount, item) => item.product.discountedPrice * item.quantity + ammount,
     0
   );
   const totalItems = items.reduce((total, item) => item.quantity + total, 0);
@@ -35,6 +35,7 @@ function Checkout() {
   } = useForm();
   const user = useSelector(selectUserInfo);
   const currentOrder = useSelector(selectCurrentOrder);
+  const status = useSelector(selectCreateOrderStatus);
 
   const handleQuantity = (e, item) => {
     dispatch(updateCartAsync({ id: item.id, quantity: +e.target.value }));
@@ -374,7 +375,7 @@ function Checkout() {
                               <h3>
                                 <a href={item.product.id}>{item.product.title}</a>
                               </h3>
-                              <p className="ml-4">${discountedPrice(item.product)}</p>
+                              <p className="ml-4">${item.product.discountedPrice}</p>
                             </div>
                             <p className="mt-1 text-sm text-gray-500">
                               {item.product.brand}
@@ -434,7 +435,19 @@ function Checkout() {
                     onClick={handleOrder}
                     className="flex items-center cursor-pointer justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                   >
-                    Pay and Order
+                    {status === 'loading' ? <CirclesWithBar
+                    height="25"
+                    width="25"
+                    color="#ffffff"
+                    outerCircleColor="#ffffff"
+                    innerCircleColor="#ffffff"
+                    barColor="#ffffff"
+                    ariaLabel="circles-with-bar-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                    visible={true}
+                  /> : 'Pay and Order'}
+                    
                   </div>
                 </div>
                 <div className="mt-6 flex justify-center text-center text-sm text-gray-500">

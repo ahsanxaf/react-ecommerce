@@ -8,20 +8,11 @@ import {
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectItems } from "../cart/cartSlice";
-import { selectLoggedInUser } from "../auth/authSlice";
 import { selectUserInfo } from "../user/userSlice";
 
-const user = {
-  name: "Tom Cook",
-  email: "tom@example.com",
-  imageUrl:
-    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-};
 const navigation = [
   { name: "Products", link: "/", user: true },
-  { name: "Team", link: "#", user: true },
-  { name: "Collections", link: "#", user: true },
-  { name: "Products", link: "/admin", admin: true },
+  { name: "Admin Products", link: "/admin", admin: true },
   { name: "Orders", link: "/admin/orders", admin: true },
 ];
 const userNavigation = [
@@ -50,9 +41,9 @@ function NavBar({ children }) {
                     <div className="flex-shrink-0">
                       <Link to="/">
                         <img
-                          className="h-8 w-8"
-                          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                          alt="Your Company"
+                          className="h-12 w-12"
+                          src="https://img.hotimg.com/S__4_-removebg-preview.png"
+                          alt="smile store"
                         />
                       </Link>
                     </div>
@@ -103,8 +94,8 @@ function NavBar({ children }) {
                             <span className="sr-only">Open user menu</span>
                             <img
                               className="h-8 w-8 rounded-full"
-                              src={userInfo.imageUrl}
-                              alt=""
+                              src='https://img.hotimg.com/3091634289e1ea9c59de7111.jpeg'
+                              alt="user avatar"
                             />
                           </Menu.Button>
                         </div>

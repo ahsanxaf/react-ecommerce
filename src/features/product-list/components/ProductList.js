@@ -23,77 +23,14 @@ import {
   selectProductListStatus,
 } from "../productSlice";
 import { Link } from "react-router-dom";
-import { ITEMS_PER_PAGE, discountedPrice } from "../../../app/constants";
+import { ITEMS_PER_PAGE } from "../../../app/constants";
 import Pagination from "../../common/Pagination";
 import { ColorRing } from "react-loader-spinner";
 
 const sortOptions = [
   { name: "Best Rating", sort: "rating", order: "desc", current: false },
-  { name: "Price: Low to High", sort: "price", order: "asc", current: false },
-  { name: "Price: High to Low", sort: "price", order: "desc", current: false },
-];
-const oldproducts = [
-  {
-    id: 1,
-    name: "Basic Tee",
-    href: "#",
-    thumbnail:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
-    title: "Front of men's Basic Tee in black.",
-    price: "$35",
-    color: "Black",
-  },
-  {
-    id: 2,
-    name: "Basic Tee",
-    href: "#",
-    thumbnail:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-02.jpg",
-    title: "Front of men's Basic Tee in black.",
-    price: "$35",
-    color: "Black",
-  },
-  {
-    id: 3,
-    name: "Basic Tee",
-    href: "#",
-    thumbnail:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-03.jpg",
-    title: "Front of men's Basic Tee in black.",
-    price: "$35",
-    color: "Black",
-  },
-  {
-    id: 4,
-    name: "Basic Tee",
-    href: "#",
-    thumbnail:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-04.jpg",
-    title: "Front of men's Basic Tee in black.",
-    price: "$35",
-    color: "Black",
-  },
-  {
-    id: 5,
-    name: "Basic Tee",
-    href: "#",
-    thumbnail:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-02.jpg",
-    title: "Front of men's Basic Tee in black.",
-    price: "$35",
-    color: "Black",
-  },
-  {
-    id: 6,
-    name: "Basic Tee",
-    href: "#",
-    thumbnail:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-04.jpg",
-    title: "Front of men's Basic Tee in black.",
-    price: "$35",
-    color: "Black",
-  },
-  // More products...
+  { name: "Price: Low to High", sort: "discountedPrice", order: "asc", current: false },
+  { name: "Price: High to Low", sort: "discountedPrice", order: "desc", current: false },
 ];
 
 function classNames(...classes) {
@@ -128,7 +65,6 @@ export default function ProductList() {
 
   useEffect(() => {
     const pagination = { _page: page, _limit: ITEMS_PER_PAGE };
-    // dispatch(fetchAllProductsAsync());
     dispatch(fetchProductsByFiltersAsync({ filter, sort, pagination }));
   }, [dispatch, filter, sort, page]);
 
@@ -516,13 +452,13 @@ function ProductGrid({ products, status }) {
                         </a>
                       </h3>
                       <p className="mt-1 text-sm text-gray-500">
-                        <StarIcon className="e-6 h-6 inline"></StarIcon>
-                        <span className="align-bottom">{product.rating}</span>
+                        {/* <StarIcon className="e-6 h-6 inline"></StarIcon> */}
+                        <span className="align-bottom">In Stock: {product.stock}</span>
                       </p>
                     </div>
                     <div>
                       <p className="text-sm font-medium text-gray-900">
-                        ${discountedPrice(product)}
+                        ${product.discountedPrice}
                       </p>
                       <p className="text-sm font-medium text-gray-400 line-through">
                         ${product.price}

@@ -148,5 +148,6 @@ export const selectError = (state) => state.auth.error;
 export const selectUserChecked = (state) => state.auth.userChecked;
 export const selectMailSentStatus = (state) => state.auth.mailSent;
 export const selectPasswordReset = (state) => state.auth.passwordReset;
+export const selectAuthStatus = (state) => state.auth.status;
 
 export default userSlice.reducer;

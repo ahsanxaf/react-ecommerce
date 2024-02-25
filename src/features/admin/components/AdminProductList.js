@@ -23,12 +23,12 @@ import {
 } from "../../product-list/productSlice";
 import { Link } from "react-router-dom";
 import { UseSelector } from "react-redux";
-import { ITEMS_PER_PAGE, discountedPrice } from "../../../app/constants";
+import { ITEMS_PER_PAGE } from "../../../app/constants";
 
 const sortOptions = [
   { name: "Best Rating", sort: "rating", order: "desc", current: false },
-  { name: "Price: Low to High", sort: "price", order: "asc", current: false },
-  { name: "Price: High to Low", sort: "price", order: "desc", current: false },
+  { name: "Price: Low to High", sort: "discountedPrice", order: "asc", current: false },
+  { name: "Price: High to Low", sort: "discountedPrice", order: "desc", current: false },
 ];
 
 function classNames(...classes) {
@@ -515,14 +515,14 @@ function ProductGrid({ products }) {
                           </a>
                         </h3>
                         <p className="mt-1 text-sm text-gray-500">
-                          <StarIcon className="e-6 h-6 inline"></StarIcon>
-                          <span className="align-bottom">{product.rating}</span>
+                          {/* <StarIcon className="e-6 h-6 inline"></StarIcon> */}
+                          <span className="align-bottom">In Stock: {product.stock}</span>
                         </p>
                       </div>
                       <div>
                         <p className="text-sm font-medium text-gray-900">
                           $
-                          {discountedPrice(product)}
+                          {product.discountedPrice}
                         </p>
                         <p className="text-sm font-medium text-gray-400 line-through">
                           ${product.price}
